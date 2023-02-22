@@ -14,6 +14,7 @@ import App from './App';
 // });
 
 describe('App component', () => {
+    // snapshot testing is to make sure the UI doesn't change unexpectedly
     it('renders magnificent monkeys', () => {
         /* since screen does not have the container property,
         we'll destructure render to obtain container for this test */
