@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 function App() {
-    const [ctr, setCtr] = useState(0);
+    const [data, setData] = useState(null);
     useEffect(() => {
-        setTimeout(() => setCtr(1), 1000);
+        fetch('/some/url').then(setData);
     }, []);
-    return ctr;
+    return data;
 }
 
 export default App;

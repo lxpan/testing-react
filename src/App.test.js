@@ -4,35 +4,24 @@ import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
-// it('should tick to a new value', () => {
-//     jest.useFakeTimers();
-
-//     render(<App />);
-
-//     const div = document.querySelector('div');
-//     expect(div.innerHTML).toBe('0');
-
-//     act(() => {
-//         jest.runAllTimers();
-//     });
-
-//     expect(div.innerHTML).toBe('1');
-// });
-
-it('should tick to a new value - real timers', async () => {
-    // a helper to use promises with timeouts
-    function sleep(period) {
-        return new Promise((resolve) => setTimeout(resolve, period));
-    }
-
-    render(<App />);
-
-    const div = document.querySelector('div');
-    expect(div.innerHTML).toBe('0');
-
-    await act(async () => {
-        await sleep(1100);
+it('should display fetched data', async () => {
+    // a rather simple mock, you might use something more advanced for your needs
+    let resolve;
+    global.fetch = () => new Promise((_resolve) => {
+        resolve = _resolve;
     });
 
-    expect(div.innerHTML).toBe('1');
+    act(() => {
+        render(<App />);
+    });
+
+    const el = document.querySelector('div');
+
+    expect(el.innerHTML).toBe('');
+
+    await act(async () => {
+        resolve(42);
+    });
+
+    expect(el.innerHTML).toBe('42');
 });
