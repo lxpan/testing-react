@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export function Input(props) {
     const { handleChange, inputValue } = props;
@@ -6,7 +6,7 @@ export function Input(props) {
 }
 
 function App() {
-    const [inputValue, setInputValue] = React.useState('');
+    const [inputValue, setInputValue] = useState('');
 
     const handleChange = (event) => {
         setInputValue(event.target.value);
