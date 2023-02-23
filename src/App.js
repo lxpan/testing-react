@@ -1,5 +1,8 @@
+import React, { useState, useEffect } from 'react';
+
 function App() {
-    return <div>My App</div>;
+    const [counter, setCounter] = useState(0);
+    return <button onClick={() => setCounter((x) => x + 1)}>{counter}</button>;
 }
 
 export default App;
